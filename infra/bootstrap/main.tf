@@ -152,9 +152,8 @@ data "aws_iam_policy_document" "infra_trust" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       values = [
-        "repo:${var.github_repo}:ref:refs/heads/main",
-        "repo:${var.github_repo}:pull_request",
-        "repo:${var.github_repo}:environment:production",
+        "repo:fastII/curriculo:*",
+        "repo:fastII@16465756/curriculo@1450552927:*",
       ]
     }
   }
