@@ -45,14 +45,14 @@ jobs:
       - name: tofu test (mock provider, sem custo)
         run: tofu test
       - name: Trivy (misconfiguration scan)
-        uses: aquasecurity/trivy-action@0.28.0
+        uses: aquasecurity/trivy-action@0.35.0
         with:
           scan-type: config
           scan-ref: infra
           severity: HIGH,CRITICAL
           exit-code: "1"
           trivyignores: .trivyignore
-
+          version: v0.69.3
   plan:
     name: plan
     needs: checks
