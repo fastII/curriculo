@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Anderson Oliveira · Senior SRE &amp; Platform Engineer</title>
+  <meta name="description" content="Anderson Dantas de Oliveira, Senior SRE e Engenheiro Sênior de DevOps/Platform. Plataformas confiáveis em escala com Kubernetes, Cloud, GitOps, observabilidade e IA aplicada.">
+  <meta name="theme-color" content="#2B2BD9">
+  <meta property="og:title" content="Anderson Oliveira · Senior SRE &amp; Platform Engineer">
+  <meta property="og:description" content="Plataformas confiáveis em escala: Kubernetes, Cloud, GitOps, SRE e IA aplicada à operação.">
+  <meta property="og:locale" content="pt_BR">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="nav" id="topo">
+  <div class="container nav__inner">
+    <a href="#inicio" class="nav__brand" aria-label="Início">
+      <span class="nav__logo">AO</span>
+      <span>Anderson Oliveira</span>
+    </a>
+    <nav class="nav__links" id="navLinks" aria-label="Seções">
+      <a href="#resultados">Resultados</a>
+      <a href="#migracoes">Migrações</a>
+      <a href="#lideranca">Como lidero</a>
+      <a href="#trajetoria">Trajetória</a>
+      <a href="#ia">IA aplicada</a>
+      <a href="#competencias">Competências</a>
+      <a href="#recrutadores">Em resumo</a>
+    </nav>
+    <div class="nav__actions">
+      <button class="icon-btn" id="themeToggle" aria-label="Alternar tema claro/escuro">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg>
+      </button>
+      <a href="#contato" class="btn btn--primary btn--sm">Vamos conversar</a>
+      <button class="icon-btn nav__burger" id="navBurger" aria-label="Abrir menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="container hero__grid">
+      <div class="hero__text reveal">
+        <p class="kicker">Senior SRE · DevOps · Platform Engineering</p>
+        <h1>Plataformas <em>confiáveis</em> em escala.</h1>
+        <p class="lead">
+          Há mais de 20 anos levo confiabilidade a empresas, órgãos de governo e à iniciativa privada,
+          do datacenter on-premises ao multi-cloud. Sua operação fica estável, transparente, ágil e com o custo certo.
+        </p>
+        <ul class="promises">
+          <li>
+            <strong>Estável</strong>
+            <span>SLOs claros e agentes de IA que detectam e diagnosticam problemas antes que seus clientes percebam.</span>
+          </li>
+          <li>
+            <strong>Transparente</strong>
+            <span>Rastreabilidade de ponta a ponta: você sabe o que aconteceu, porque aconteceu e o que já está sendo feito.</span>
+          </li>
+          <li>
+            <strong>Ágil e segura</strong>
+            <span>Infraestrutura como código: provisionamento automatizado, versionado e auditável, com segurança integrada ao pipeline (DevSecOps) e arquitetura pronta para escalar com o negócio.</span>
+          </li>
+          <li>
+            <strong>Custo sob controle</strong>
+            <span>Escala com eficiência, não com desperdício: identifico os gargalos reais, dimensiono cada recurso na medida certa e elimino gastos que não geram valor.</span>
+          </li>
+        </ul>
+        <div class="hero__cta">
+          <a href="#contato" class="btn btn--primary">Entrar em contato</a>
+          <a href="assets/Anderson_Curriculo.pdf" class="btn btn--ghost" target="_blank" rel="noopener">Currículo (PDF)</a>
+        </div>
+        <ul class="hero__stats">
+          <li><strong data-count="20" data-suffix="+">20+</strong><span>anos em infraestrutura</span></li>
+          <li><strong data-count="6" data-suffix="+">6+</strong><span>cenários de migração</span></li>
+          <li><strong data-count="3">3</strong><span>clouds: AWS · Azure · GCP</span></li>
+          <li><strong data-count="14">14</strong><span>certificações</span></li>
+        </ul>
+      </div>
+      <div class="hero__photo reveal">
+        <div class="photo-frame">
+          <img src="assets/anderson.png" alt="Foto de Anderson Dantas de Oliveira" id="heroPhoto">
+          <div class="photo-fallback" aria-hidden="true">AO</div>
+        </div>
+        <div class="status-chip">
+          <span class="dot"></span> SLO 99.9% · on-call ready
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULTADOS -->
+  <section class="section" id="resultados">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Resultados</p>
+        <h2>O que muda nas plataformas em que atuo</h2>
+        <p class="section__sub">Entregas concretas, do provisionamento à confiabilidade em produção.</p>
+      </header>
+
+      <div class="results">
+        <article class="result reveal">
+          <div class="result__big">Migrações</div>
+          <div class="result__body">
+            <h3>On-premises → multi-cloud, sem parar a operação</h3>
+            <p>GKE → EKS, OpenShift on-premises → Azure AKS, ECS → EKS, VMs e middleware → containers. Cada migração com plano de rollback, validação automatizada e cutover controlado.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · META · Compass · GlobalWeb</div>
+        </article>
+        <article class="result reveal">
+          <div class="result__big">SLI/SLO</div>
+          <div class="result__body">
+            <h3>Confiabilidade medida, não percebida</h3>
+            <p>Definição e acompanhamento de SLIs, SLOs e SLAs para disponibilidade, latência, taxa de erros e qualidade dos serviços.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · 2025–atual</div>
+        </article>
+        <article class="result reveal">
+          <div class="result__big">GitOps</div>
+          <div class="result__body">
+            <h3>Deploy declarativo de microsserviços</h3>
+            <p>FluxCD e ArgoCD para gestão declarativa e automação de deployments, com estratégias Canary e Rolling Update.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · Compass</div>
+        </article>
+        <article class="result reveal">
+          <div class="result__big">IDP</div>
+          <div class="result__body">
+            <h3>Developer Experience com Backstage</h3>
+            <p>Templates Helm e pipelines padronizados que aceleram o onboarding e o deploy de aplicações pelos times.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · 2025–atual</div>
+        </article>
+        <article class="result reveal">
+          <div class="result__big">FinOps</div>
+          <div class="result__body">
+            <h3>Custo otimizado sem perder performance</h3>
+            <p>Identificação de desperdícios e rightsizing de recursos AWS, preservando escalabilidade e disponibilidade.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · 2025–atual</div>
+        </article>
+        <article class="result reveal">
+          <div class="result__big">SSO</div>
+          <div class="result__body">
+            <h3>Acesso unificado na plataforma</h3>
+            <p>Integração de SSO com Okta e Google nos componentes da plataforma, fortalecendo segurança e experiência de autenticação.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · 2025–atual</div>
+        </article>
+        <article class="result reveal">
+          <div class="result__big">AI-SRE</div>
+          <div class="result__body">
+            <h3>Diagnóstico de anomalias com agentes</h3>
+            <p>Agentes de IA com MCP Kubernetes e MCP Prometheus em modo somente leitura para correlacionar eventos, métricas e logs e sugerir causa raiz.</p>
+          </div>
+          <div class="result__where">Cactus Gaming · 2025–atual</div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MIGRAÇÕES -->
+  <section class="section section--alt" id="migracoes">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Principais projetos</p>
+        <h2>Migrações que <em>não</em> param o negócio</h2>
+        <p class="section__sub">Desafio, solução e resultado. Do datacenter on-premises ao Kubernetes gerenciado em AWS, Azure e GCP.</p>
+      </header>
+      <div class="mig reveal">
+        <div class="mig__tabs" id="migTabs" role="tablist" aria-label="Projetos de migração"></div>
+        <article class="mig__panel" id="migPanel" role="tabpanel" aria-live="polite"></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LIDERANÇA -->
+  <section class="section section--alt" id="lideranca">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Como lidero</p>
+        <h2>Fazendo a infraestrutura <em>crescer</em> junto com o negócio</h2>
+        <p class="section__sub">
+          Atuo no crescimento de ambientes de infraestrutura no mundo corporativo, em órgãos de governo
+          e na iniciativa privada: de servidores de aplicação e middleware a plataformas cloud-native com
+          GitOps, observabilidade e IA. Tecnologia é ponto de partida; o objetivo é um ambiente que o time
+          consiga operar, evoluir e no qual possa confiar.
+        </p>
+      </header>
+
+      <div class="cards4">
+        <article class="card reveal">
+          <span class="tag">Governo</span>
+          <h3>Ambientes críticos e regulados</h3>
+          <p>Alta disponibilidade, API Gateway, proxy reverso, certificados e middleware (JBoss, Tomcat, Apache, Nginx) em ambientes que não podem parar.</p>
+        </article>
+        <article class="card reveal">
+          <span class="tag">Corporativo</span>
+          <h3>Padronização que escala</h3>
+          <p>Pipelines CI/CD, IaC e templates reutilizáveis para que dezenas de squads entreguem do mesmo jeito, com qualidade e segurança.</p>
+        </article>
+        <article class="card reveal">
+          <span class="tag">Privado</span>
+          <h3>Cloud-native e FinOps</h3>
+          <p>Kubernetes em AWS, Azure e GCP com custo sob controle, autoscaling inteligente e decisões baseadas em métricas.</p>
+        </article>
+        <article class="card reveal">
+          <span class="tag">Pessoas → resultado</span>
+          <h3>Times que operam com autonomia</h3>
+          <p>Apoio às squads de desenvolvimento, documentação viva, runbooks e cultura de postmortem sem culpados.</p>
+        </article>
+      </div>
+
+      <blockquote class="pullquote reveal">
+        “Confiabilidade é desenhar a plataforma para que o time durma tranquilo, sabendo que o alerta certo vai tocar antes do cliente perceber.”
+      </blockquote>
+
+      <!-- Diagrama interativo de maturidade -->
+      <div class="evo reveal" id="evo">
+        <div class="evo__head">
+          <h3>Evolução da plataforma · 2005 → 2026</h3>
+          <div class="evo__ctrl">
+            <button class="btn btn--ghost btn--sm" id="evoPrev">← Anterior</button>
+            <button class="btn btn--ghost btn--sm" id="evoNext">Próximo →</button>
+          </div>
+        </div>
+        <div class="evo__track" id="evoTrack" role="tablist" aria-label="Marcos da evolução"></div>
+        <div class="evo__panel" id="evoPanel" aria-live="polite"></div>
+        <p class="evo__note">Cada etapa adicionou uma camada sobre a anterior; nada foi descartado, tudo foi automatizado.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAJETÓRIA -->
+  <section class="section" id="trajetoria">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Trajetória</p>
+        <h2>20+ anos: do datacenter à engenharia de plataforma</h2>
+        <p class="section__sub">Cada passo somou uma camada: middleware, containers, cloud, GitOps, SRE e IA.</p>
+      </header>
+
+      <ol class="timeline">
+        <li class="tl reveal">
+          <div class="tl__meta"><span class="tl__n">01</span><span class="tl__date">jun 2025 – atual</span><span class="badge">Atual</span></div>
+          <div class="tl__body">
+            <h3>SRE Engineer <span>· Cactus Gaming</span></h3>
+            <ul>
+              <li>SLIs, SLOs e SLAs para disponibilidade, latência, taxa de erros e qualidade dos serviços.</li>
+              <li>Monitoramento, logging e alertas proativos com Prometheus, Grafana, Alertmanager, OpenSearch, Kibana e New Relic.</li>
+              <li>Agentes de IA para análise de anomalias em Kubernetes/EKS com skills e prompts de diagnóstico SRE, integrando MCP Kubernetes e MCP Prometheus em modo somente leitura.</li>
+              <li>Liderou a migração de infraestrutura GKE → EKS: reescrita da IaC em Terraform/OpenTofu/Terragrunt, espelhamento de imagens para o ECR, troca de Workload Identity por IRSA/Pod Identity e cutover gradual por DNS (Route 53) com rollback planejado.</li>
+              <li>Evolução do EKS com Karpenter e EKS Auto Mode, com foco em escalabilidade e custo.</li>
+              <li>CI/CD com GitHub Actions; GitOps com FluxCD e ArgoCD; SSO com Okta e Google.</li>
+              <li>Platform Engineering com Backstage e templates Helm; IaC com Terraform, OpenTofu e Terragrunt em AWS e GCP.</li>
+              <li>FinOps na AWS e contato com Power BI e Databricks em iniciativas de LLM e MLOps.</li>
+            </ul>
+            <div class="chips"><span>EKS</span><span>Karpenter</span><span>SLO</span><span>FluxCD</span><span>ArgoCD</span><span>Backstage</span><span>OpenTofu</span><span>MCP</span><span>FinOps</span></div>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__meta"><span class="tl__n">02</span><span class="tl__date">nov 2021 – mai 2025</span></div>
+          <div class="tl__body">
+            <h3>DevSecOps Engineer <span>· Compass</span></h3>
+            <ul>
+              <li>Migração de workloads de ECS/EC2 para Amazon EKS, padronizando deploy com Helm e ArgoCD e autoscaling com Karpenter e Cast AI.</li>
+              <li>Transição de pipelines Jenkins para GitLab CI e GitHub Actions, com segurança integrada (Snyk, Trivy, Veracode).</li>
+              <li>Plataformas AWS e Kubernetes/EKS com Karpenter, EKS Auto Mode e Cast AI.</li>
+              <li>Pipelines CI/CD end-to-end com GitLab CI, GitHub Actions e Jenkins; GitOps com ArgoCD.</li>
+              <li>IaC com Terraform e CloudFormation; observabilidade com New Relic, Elasticsearch, Kibana, Prometheus.</li>
+              <li>Suporte às squads com deploys Canary e Rolling Update.</li>
+            </ul>
+            <div class="chips"><span>AWS</span><span>EKS</span><span>Cast AI</span><span>GitLab CI</span><span>Security Hub</span><span>Terraform</span></div>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__meta"><span class="tl__n">03</span><span class="tl__date">abr 2020 – nov 2021</span></div>
+          <div class="tl__body">
+            <h3>Analista DevOps <span>· META</span></h3>
+            <ul>
+              <li>Liderou a estratégia de migração cloud-native de sistemas críticos de um ambiente <strong>OpenShift on-premises para o Azure AKS</strong>.</li>
+              <li>Conversão de manifestos OpenShift (Routes, DeploymentConfigs, ImageStreams) para padrões Kubernetes (Ingress, Deployments), com Velero para volumes e Skopeo para sincronização de imagens no ACR.</li>
+              <li>Substituição do OpenShift S2I por pipelines no GitHub Actions e Azure DevOps integrados ao ACR; GitOps com ArgoCD e autoscaling com KEDA.</li>
+              <li>Governança de segurança no AKS trocando SCCs por Azure Policy para Kubernetes e Kubewarden; bancos em contêiner migrados para Azure SQL e Cosmos DB.</li>
+              <li>Migração de projetos para Azure DevOps; containers com Rancher, AKS e OKD/OpenShift.</li>
+              <li>Terraform e serviços Azure: Key Vault, App Service, API Management, Cosmos DB, CDN.</li>
+            </ul>
+            <div class="chips"><span>OpenShift → AKS</span><span>Velero</span><span>Skopeo</span><span>ACR</span><span>KEDA</span><span>Azure Policy</span><span>ArgoCD</span><span>Terraform</span></div>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__meta"><span class="tl__n">04</span><span class="tl__date">mar 2020 – abr 2021</span></div>
+          <div class="tl__body">
+            <h3>Analista de Infraestrutura Sênior <span>· RPerformanceGroup</span></h3>
+            <ul>
+              <li>Sustentação de aplicações críticas em JBoss EAP e OpenShift/OKD, apoiando a migração de aplicações Java de servidores tradicionais para containers no OKD.</li>
+              <li>Observabilidade com ELK, Grafana, Graylog e Zabbix; CI/CD com Jenkins, Maven, SonarQube e Nexus.</li>
+            </ul>
+            <div class="chips"><span>JBoss EAP</span><span>OKD</span><span>ELK</span><span>SonarQube</span></div>
+          </div>
+        </li>
+        <li class="tl reveal">
+          <div class="tl__meta"><span class="tl__n">05</span><span class="tl__date">mar 2016 – mai 2020</span></div>
+          <div class="tl__body">
+            <h3>Especialista em Infraestrutura <span>· GlobalWeb</span></h3>
+            <ul>
+              <li>Middleware e web: JBoss EAP, Tomcat, Apache, Nginx; Kong API Gateway e ambientes de alta disponibilidade.</li>
+              <li>Migração de aplicações de VMs e middleware tradicional para containers, evoluindo de Docker Swarm para Kubernetes com Rancher.</li>
+              <li>Modernização do monitoramento de Nagios/Centreon para Zabbix, Graylog e Grafana; automação com Jenkins, Rundeck e Ansible AWX.</li>
+              <li>Observabilidade com Graylog, Zabbix, Grafana, Nagios, Centreon e Check_MK.</li>
+            </ul>
+            <div class="chips"><span>Kong</span><span>Kubernetes</span><span>Ansible AWX</span><span>Nexus</span><span>Alta disponibilidade</span></div>
+          </div>
+        </li>
+        <li class="tl tl--compact reveal">
+          <div class="tl__meta"><span class="tl__n">06</span><span class="tl__date">2005 – 2016</span></div>
+          <div class="tl__body">
+            <h3>Antes <span>· mais de 10 anos de base em Linux, datacenter e middleware</span></h3>
+            <ul class="tl__mini">
+              <li><strong>Início de carreira</strong> · suporte, redes, servidores Linux/Windows e datacenter</li>
+              <li><strong>Stefanini</strong> · Analista de Infraestrutura (2015–2016) · Zimbra, McAfee Email Gateway, Zabbix</li>
+              <li><strong>Bktech</strong> · Analista de Suporte Linux Sênior (2014–2015) · SUSE, HAProxy, Heartbeat, clustering</li>
+              <li><strong>CPD Informática</strong> · Analista de Aplicação Sênior (2013–2014) · Tomcat, JBoss, Varnish, WebLogic, FortiWeb</li>
+            </ul>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- IA APLICADA -->
+  <section class="section section--dark" id="ia">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">IA aplicada</p>
+        <h2>Agentes de IA a serviço da <em>confiabilidade</em></h2>
+        <p class="section__sub">
+          Aplico IA como aplico qualquer ferramenta de plataforma: com escopo, permissões mínimas e
+          métricas. Pós-graduado em Inteligência Artificial, uso agentes, skills e MCPs no dia a dia de
+          Kubernetes e de testes automatizados.
+        </p>
+      </header>
+
+      <div class="ia">
+        <dl class="ia__rows reveal">
+          <div class="ia__row">
+            <dt>Kubernetes</dt>
+            <dd>Agentes com skills de diagnóstico SRE integrados ao <strong>MCP Kubernetes</strong> e ao <strong>MCP Prometheus</strong> para correlacionar eventos, logs, métricas e saúde de pods/nodes, apontando possíveis causas raiz em EKS.</dd>
+          </div>
+          <div class="ia__row">
+            <dt>Testes automatizados</dt>
+            <dd>Agentes que geram e revisam testes de infraestrutura e pipelines: validação de manifestos e Helm charts, <code>terraform plan</code>/testes de IaC, checagens de segurança (Trivy, Snyk) e gates de qualidade no CI/CD.</dd>
+          </div>
+          <div class="ia__row">
+            <dt>Soluções</dt>
+            <dd>Skills, agents e MCPs reutilizáveis; prompts especializados por domínio (incidente, capacidade, custo); workflows assíncronos integrados a observabilidade, Git e comunicação.</dd>
+          </div>
+          <div class="ia__row">
+            <dt>Governança</dt>
+            <dd>MCPs em modo <strong>somente leitura</strong> em produção, princípio do menor privilégio, revisão humana antes de qualquer mudança e trilha de auditoria.</dd>
+          </div>
+          <div class="ia__row">
+            <dt>Método</dt>
+            <dd>Spec-Driven Development, regras e contexto por repositório, loops de feedback e iteração; o agente propõe, o pipeline valida, a pessoa aprova.</dd>
+          </div>
+          <div class="ia__row">
+            <dt>Ferramentas</dt>
+            <dd>Claude Code, Codex, MCP Kubernetes, MCP Prometheus, GitHub Actions, Databricks (LLM/MLOps).</dd>
+          </div>
+        </dl>
+
+        <div class="term reveal" aria-label="Exemplo ilustrativo de diagnóstico com agente">
+          <div class="term__bar">
+            <span></span><span></span><span></span>
+            <em>sre-agent · claude code</em>
+          </div>
+          <pre class="term__body" id="termBody"></pre>
+          <button class="term__replay" id="termReplay" aria-label="Reexecutar demonstração">↻ replay</button>
+        </div>
+      </div>
+
+      <div class="flow reveal">
+        <div class="flow__step"><span>1</span>Alerta<small>Alertmanager</small></div>
+        <div class="flow__arrow" aria-hidden="true">→</div>
+        <div class="flow__step"><span>2</span>Agente + Skill SRE<small>Claude Code / Codex</small></div>
+        <div class="flow__arrow" aria-hidden="true">→</div>
+        <div class="flow__step"><span>3</span>MCPs read-only<small>Kubernetes · Prometheus</small></div>
+        <div class="flow__arrow" aria-hidden="true">→</div>
+        <div class="flow__step"><span>4</span>Hipótese de causa raiz<small>evidências + runbook</small></div>
+        <div class="flow__arrow" aria-hidden="true">→</div>
+        <div class="flow__step"><span>5</span>Correção via GitOps<small>PR · testes · aprovação</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPETÊNCIAS -->
+  <section class="section" id="competencias">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Competências</p>
+        <h2>Stack de plataforma</h2>
+      </header>
+      <div class="skills" id="skills"></div>
+    </div>
+  </section>
+
+  <!-- FORMAÇÃO & CERTIFICAÇÕES -->
+  <section class="section section--alt" id="certificacoes">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Formação &amp; certificações</p>
+        <h2>Base sólida, sempre atualizada</h2>
+      </header>
+
+      <div class="edu reveal">
+        <article class="edu__item">
+          <span class="tag">Pós-graduação · 2024</span>
+          <h3>Inteligência Artificial</h3>
+          <p>Anhanguera Educacional</p>
+        </article>
+        <article class="edu__item">
+          <span class="tag">Bacharelado · 2010–2013</span>
+          <h3>Sistemas de Informação</h3>
+          <p>Anhanguera Educacional</p>
+        </article>
+      </div>
+
+      <div class="certs" id="certs"></div>
+      <p class="courses reveal"><strong>Cursos:</strong> Kubernetes e Docker (LinuxTips) · OpenShift · Rancher · Jenkins · Python · Microsoft Azure · AWS · Istio · Graylog · FortiWeb · JBoss Administration · Gestão de TI</p>
+    </div>
+  </section>
+
+  <!-- EM RESUMO -->
+  <section class="section" id="recrutadores">
+    <div class="container">
+      <header class="section__head reveal">
+        <p class="kicker">Em resumo</p>
+        <h2>Para recrutadores</h2>
+      </header>
+      <dl class="summary reveal">
+        <div><dt>Atuação</dt><dd>Senior SRE · Engenheiro Sênior de DevOps / Platform Engineering</dd></div>
+        <div><dt>Base</dt><dd>Brasília - DF, Brasil (BRT)</dd></div>
+        <div><dt>Modelo</dt><dd>Remoto, híbrido ou presencial</dd></div>
+        <div><dt>Experiência</dt><dd>20+ anos em infraestrutura; ambientes corporativos, de governo e privados; migrações on-premises → cloud e entre clouds</dd></div>
+        <div><dt>Onde mais contribuo</dt><dd>Confiabilidade (SLI/SLO), Kubernetes/EKS, GitOps, IaC, observabilidade, FinOps e IA aplicada à operação</dd></div>
+        <div><dt>Clouds</dt><dd>AWS · Azure · GCP</dd></div>
+        <div><dt>Formação</dt><dd>Pós em Inteligência Artificial · Bacharel em Sistemas de Informação</dd></div>
+        <div><dt>Idiomas</dt><dd>Português (nativo) · Inglês (avançado)</dd></div>
+        <div class="summary__en"><dt>In English</dt><dd>Senior Site Reliability Engineer and DevOps/Platform Engineer with 20+ years building, migrating and operating critical infrastructure, from on-premises datacenters to AWS, Azure and GCP. Led migrations such as GKE to EKS and on-premises OpenShift to Azure AKS. Kubernetes (EKS/GKE/AKS), GitOps, Terraform/OpenTofu, observability and SLOs, plus AI agents with MCP for Kubernetes diagnostics. CKAD and AWS SAA certified.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="section contact" id="contato">
+    <div class="container contact__grid">
+      <div class="reveal">
+        <p class="kicker">Contato</p>
+        <h2>Vamos <em>conversar.</em></h2>
+        <p class="section__sub">Se você está construindo, migrando ou escalando uma plataforma e precisa de confiabilidade em produção, eu respondo rápido.</p>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__label">E-mail</span>
+            <a href="mailto:anderson.oliveira1979@gmail.com">anderson.oliveira1979@gmail.com</a>
+            <button class="copy" data-copy="anderson.oliveira1979@gmail.com">Copiar</button>
+          </li>
+          <li>
+            <span class="contact__label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/anderson-oliveira-64360579" target="_blank" rel="noopener">linkedin.com/in/anderson-oliveira-64360579</a>
+            <button class="copy" data-copy="https://www.linkedin.com/in/anderson-oliveira-64360579">Copiar</button>
+          </li>
+          <li>
+            <span class="contact__label">Telefone</span>
+            <a href="tel:+5561992406262">(61) 99240-6262</a>
+            <button class="copy" data-copy="+55 61 99240-6262">Copiar</button>
+          </li>
+        </ul>
+
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="https://wa.me/5561992406262" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="btn btn--ghost" href="assets/Anderson_Curriculo.pdf" target="_blank" rel="noopener">Abrir currículo (PDF)</a>
+        </div>
+      </div>
+      <div class="contact__photo reveal">
+        <div class="photo-frame photo-frame--sm">
+          <img src="assets/anderson.png" alt="Anderson Dantas de Oliveira">
+          <div class="photo-fallback" aria-hidden="true">AO</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <p>Anderson Dantas de Oliveira · Senior SRE &amp; Platform Engineer · Brasília, Brasil</p>
+    <a href="#inicio">Voltar ao topo ↑</a>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
