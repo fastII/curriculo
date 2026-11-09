@@ -1,0 +1,83 @@
+name: Site (test + deploy)
+
+on:
+  pull_request:
+    paths: ["site/**", ".github/workflows/deploy.yml"]
+  push:
+    branches: [main]
+    paths: ["site/**", ".github/workflows/deploy.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: html · links · segredos
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: HTML lint
+        run: npx --yes htmlhint@1.1.4 "site/**/*.html"
+      - name: Links internos (arquivos, imagens, âncoras)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --offline --include-fragments --no-progress --root-dir "${{ github.workspace }}/site" "site/**/*.html"
+          fail: true
+      - name: Nenhum segredo no site
+        run: |
+          if grep -RInE '(AKIA[0-9A-Z]{16}|sk-[A-Za-z0-9_-]{20,}|sk-ant-[A-Za-z0-9_-]{20,}|-----BEGIN [A-Z ]*PRIVATE KEY)' site/; then
+            echo "::error::Possível segredo encontrado em site/"; exit 1
+          fi
+
+  deploy:
+    name: deploy S3 + CloudFront
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment:
+      name: production
+      url: https://${{ vars.DOMAIN_NAME }}
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: Upload dos assets
+        run: |
+          aws s3 sync site/ "s3://${{ vars.SITE_BUCKET }}/" \
+            --delete --exclude "*.html" \
+            --cache-control "public, max-age=86400"
+      - name: Upload do HTML
+        run: |
+          aws s3 sync site/ "s3://${{ vars.SITE_BUCKET }}/" \
+            --exclude "*" --include "*.html" \
+            --cache-control "public, max-age=0, must-revalidate" \
+            --content-type "text/html; charset=utf-8"
+      - name: Invalidação do CloudFront
+        run: |
+          ID=$(aws cloudfront create-invalidation \
+            --distribution-id "${{ vars.CF_DISTRIBUTION_ID }}" \
+            --paths "/*" --query 'Invalidation.Id' --output text)
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "${{ vars.CF_DISTRIBUTION_ID }}" --id "$ID"
+      - name: Smoke test
+        run: |
+          URL="https://${{ vars.DOMAIN_NAME }}"
+          curl -fsS -o /dev/null -w "home: %{http_code}\n" "$URL/"
+          curl -fsS "$URL/" | grep -q "Anderson" || { echo "::error::Conteúdo inesperado na home"; exit 1; }
+          curl -sSI "$URL/" | grep -qi "strict-transport-security" || { echo "::error::HSTS ausente"; exit 1; }
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "$URL/pagina-que-nao-existe")
+          [ "$CODE" = "404" ] || { echo "::error::Esperado 404, veio $CODE"; exit 1; }
+          echo "✅ Site no ar: $URL" >> "$GITHUB_STEP_SUMMARY"
