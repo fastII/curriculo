@@ -19,7 +19,7 @@ data "aws_iam_policy_document" "deploy_trust" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-            values = [
+      values = [
         "repo:fastII/curriculo:*",
         "repo:fastII@16465756/curriculo@1450552927:*",
       ]
