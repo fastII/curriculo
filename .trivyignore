@@ -1,0 +1,10 @@
+# Riscos aceitos (revisar a cada 6 meses)
+# S3 com SSE-S3 em vez de KMS próprio (custo ~US$ 1/mês por chave)
+AVD-AWS-0132
+AWS-0132
+# CloudFront sem WAF pago (site estático, sem backend)
+AVD-AWS-0011
+AWS-0011
+# Wildcards na role do OpenTofu (necessários para gerenciar a stack; acesso via OIDC)
+AVD-AWS-0057
+AWS-0057
