@@ -1,0 +1,125 @@
+name: Infra (OpenTofu)
+
+on:
+  pull_request:
+    paths: ["infra/main/**", ".github/workflows/tofu.yml"]
+  push:
+    branches: [main]
+    paths: ["infra/main/**", ".github/workflows/tofu.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: tofu-site
+  cancel-in-progress: false
+
+env:
+  TOFU_VERSION: "1.10.7"
+  TF_IN_AUTOMATION: "true"
+  WORKDIR: infra/main
+  TF_VAR_domain_name: ${{ vars.DOMAIN_NAME }}
+  TF_VAR_github_repo: ${{ github.repository }}
+  TF_VAR_aws_region: ${{ vars.AWS_REGION }}
+
+jobs:
+  checks:
+    name: fmt · validate · test · security scan
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.WORKDIR }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: ${{ env.TOFU_VERSION }}
+          tofu_wrapper: false
+      - name: tofu fmt
+        run: tofu fmt -check -recursive ..
+      - name: tofu init (sem backend)
+        run: tofu init -backend=false -input=false
+      - name: tofu validate
+        run: tofu validate
+      - name: tofu test (mock provider, sem custo)
+        run: tofu test
+      - name: Trivy (misconfiguration scan)
+        uses: aquasecurity/trivy-action@0.28.0
+        with:
+          scan-type: config
+          scan-ref: infra
+          severity: HIGH,CRITICAL
+          exit-code: "1"
+          trivyignores: .trivyignore
+
+  plan:
+    name: plan
+    needs: checks
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: ${{ env.WORKDIR }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: ${{ env.TOFU_VERSION }}
+          tofu_wrapper: false
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_INFRA_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: tofu init
+        run: |
+          tofu init -input=false \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="key=site/tofu.tfstate" \
+            -backend-config="region=${{ vars.AWS_REGION }}"
+      - name: tofu plan
+        run: tofu plan -input=false -no-color -out=tfplan | tee plan.txt
+      - name: Resumo do plan
+        if: always()
+        run: |
+          {
+            echo "### OpenTofu plan"
+            echo '```'
+            grep -E '^(Plan:|No changes|  # )' plan.txt || true
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  apply:
+    name: apply
+    needs: plan
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    environment: production
+    permissions:
+      contents: read
+      id-token: write
+    defaults:
+      run:
+        working-directory: ${{ env.WORKDIR }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: opentofu/setup-opentofu@v1
+        with:
+          tofu_version: ${{ env.TOFU_VERSION }}
+          tofu_wrapper: false
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ vars.AWS_INFRA_ROLE_ARN }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: tofu init
+        run: |
+          tofu init -input=false \
+            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
+            -backend-config="key=site/tofu.tfstate" \
+            -backend-config="region=${{ vars.AWS_REGION }}"
+      - name: tofu apply
+        run: tofu apply -input=false -auto-approve
+      - name: Outputs
+        run: tofu output -no-color >> "$GITHUB_STEP_SUMMARY"
