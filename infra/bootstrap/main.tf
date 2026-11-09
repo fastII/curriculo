@@ -173,14 +173,36 @@ data "aws_iam_policy_document" "infra" {
     resources = [aws_s3_bucket.tfstate.arn, "${aws_s3_bucket.tfstate.arn}/*"]
   }
 
+  # S3: só os buckets do projeto (nomes terminam com o ID da conta)
   statement {
-    sid = "SiteStack"
+    sid = "SiteBuckets"
     actions = [
-      "s3:*",
-      "cloudfront:*",
-      "acm:*",
-      "route53:*",
+      "s3:CreateBucket",
+      "s3:DeleteBucket",
+      "s3:ListBucket",
+      "s3:ListBucketVersions",
+      "s3:GetBucket*",
+      "s3:PutBucket*",
+      "s3:DeleteBucketPolicy",
+      "s3:GetLifecycleConfiguration",
+      "s3:PutLifecycleConfiguration",
+      "s3:GetEncryptionConfiguration",
+      "s3:PutEncryptionConfiguration",
+      "s3:GetAccelerateConfiguration",
+      "s3:GetReplicationConfiguration",
+      "s3:GetObject*",
+      "s3:PutObject*",
+      "s3:DeleteObject*",
     ]
+    resources = [
+      "arn:aws:s3:::*-${data.aws_caller_identity.current.account_id}",
+      "arn:aws:s3:::*-${data.aws_caller_identity.current.account_id}/*",
+    ]
+  }
+
+  statement {
+    sid       = "SiteStack"
+    actions   = ["cloudfront:*", "acm:*", "route53:*"]
     resources = ["*"]
   }
 
