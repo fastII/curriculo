@@ -61,6 +61,12 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
+      
+      # Versão nos links de CSS/JS: força o navegador a baixar os arquivos novos a cada deploy
+      - name: Versão dos arquivos (cache busting)
+        run: |
+          sed -i "s/__BUILD__/${GITHUB_SHA::7}/g" site/*.html
+          grep -o 'v=[0-9a-f]\{7\}' site/index.html | head -1    
       - name: Upload dos assets
         run: |
           aws s3 sync site/ "s3://${{ vars.SITE_BUCKET }}/" \
