@@ -65,7 +65,7 @@ jobs:
         run: |
           aws s3 sync site/ "s3://${{ vars.SITE_BUCKET }}/" \
             --delete --exclude "*.html" \
-            --cache-control "public, max-age=86400"
+            --cache-control "public, max-age=300"
       - name: Upload do HTML
         run: |
           aws s3 sync site/ "s3://${{ vars.SITE_BUCKET }}/" \
