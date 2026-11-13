@@ -9,7 +9,6 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
 
 concurrency:
@@ -54,6 +53,7 @@ jobs:
           exit-code: "1"
           trivyignores: .trivyignore
           version: v0.69.3
+
   plan:
     name: plan
     needs: checks
@@ -74,12 +74,8 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_INFRA_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
-      - name: tofu init
-        run: |
-          tofu init -input=false \
-            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
-            -backend-config="key=site/tofu.tfstate" \
-            -backend-config="region=${{ vars.AWS_REGION }}"
+      - name: tofu init (state no S3 via backend.tf)
+        run: tofu init -input=false
       - name: tofu plan
         run: tofu plan -input=false -no-color -out=tfplan | tee plan.txt
       - name: Resumo do plan
@@ -114,12 +110,8 @@ jobs:
         with:
           role-to-assume: ${{ vars.AWS_INFRA_ROLE_ARN }}
           aws-region: ${{ vars.AWS_REGION }}
-      - name: tofu init
-        run: |
-          tofu init -input=false \
-            -backend-config="bucket=${{ vars.TF_STATE_BUCKET }}" \
-            -backend-config="key=site/tofu.tfstate" \
-            -backend-config="region=${{ vars.AWS_REGION }}"
+      - name: tofu init (state no S3 via backend.tf)
+        run: tofu init -input=false
       - name: tofu apply
         run: tofu apply -input=false -auto-approve
       - name: Outputs
