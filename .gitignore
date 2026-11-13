@@ -1,0 +1,65 @@
+# =============================================================
+# OpenTofu / Terraform
+# =============================================================
+# Providers e módulos baixados (qualquer nível)
+**/.terraform/*
+
+# State: NUNCA versionar (o state real fica no S3)
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+.terraform.tfstate.lock.info
+terraform.tfstate.d/
+
+# Plans e logs
+*.tfplan
+tfplan
+plan.txt
+crash.log
+crash.*.log
+
+# Overrides locais
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Configuração local de backend (não usada com backend.tf, mas por segurança)
+backend.hcl
+
+# Variáveis: ignoradas por padrão...
+*.tfvars
+*.tfvars.json
+# ...exceto exemplos e os do projeto (sem segredos)
+
+# =============================================================
+# Credenciais e segredos (nunca no Git)
+# =============================================================
+.terraformrc
+terraform.rc
+.aws/
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# =============================================================
+# Python / Node
+# =============================================================
+.venv/
+venv/
+__pycache__/
+*.pyc
+node_modules/
+
+# =============================================================
+# Sistema e editores
+# =============================================================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
