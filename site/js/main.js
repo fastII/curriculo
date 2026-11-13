@@ -116,7 +116,7 @@
   };
   const MIGS = [
     {
-      tab: "OpenShift → Azure AKS", org: "META · 2020–2021", tipo: "On-premises → Cloud",
+      tab: "OpenShift → Azure AKS", org: "META · 2021–2022", tipo: "On-premises → Cloud",
       desafio: {
         pt: "Migrar sistemas críticos core de um OpenShift on-premises legado para a nuvem, sem impactar a operação e reduzindo custos de infraestrutura e licenciamento.",
         en: "Migrate critical core systems from a legacy on-premises OpenShift to the cloud without impacting operations, while reducing infrastructure and licensing costs.",
@@ -159,7 +159,7 @@
       tech: ["GKE", "Amazon EKS", "Karpenter", "EKS Auto Mode", "Terraform", "OpenTofu", "Terragrunt", "FluxCD", "ArgoCD", "Helm", "Route 53", "ECR", "Prometheus", "Grafana"],
     },
     {
-      tab: "ECS/EC2 → EKS", org: "Compass · 2021–2025", tipo: { pt: "Modernização", en: "Modernization", es: "Modernización" },
+      tab: "ECS/EC2 → EKS", org: "Compass · 2022–2025", tipo: { pt: "Modernização", en: "Modernization", es: "Modernización" },
       desafio: {
         pt: "Unificar workloads espalhados entre EC2 e ECS em uma plataforma Kubernetes padronizada, segura e com custo previsível.",
         en: "Unify workloads spread across EC2 and ECS into a standardized, secure Kubernetes platform with predictable cost.",
@@ -278,7 +278,7 @@
     { y: "2018", h: 58, t: { pt: "Containers", en: "Containers", es: "Contenedores" },
       d: { pt: "Primeiros clusters Kubernetes, Rancher e Docker Swarm. Registry e Nexus como fonte única de artefatos.", en: "First Kubernetes clusters, Rancher and Docker Swarm. Registry and Nexus as the single source of artifacts.", es: "Primeros clusters de Kubernetes, Rancher y Docker Swarm. Registry y Nexus como fuente única de artefactos." },
       c: ["Kubernetes", "Rancher", "Docker", "Nexus"] },
-    { y: "2020", h: 70, t: "On-premises → Cloud",
+    { y: "2021", h: 70, t: "On-premises → Cloud",
       d: { pt: "Migração de OpenShift on-premises para Azure AKS, pipelines de ponta a ponta e Terraform como padrão de provisionamento.", en: "Migration from on-premises OpenShift to Azure AKS, end-to-end pipelines and Terraform as the provisioning standard.", es: "Migración de OpenShift on-premises a Azure AKS, pipelines de punta a punta y Terraform como estándar de aprovisionamiento." },
       c: ["OpenShift → AKS", "Azure DevOps", "KEDA", "Terraform"] },
     { y: "2022", h: 84, t: "DevSecOps & GitOps",

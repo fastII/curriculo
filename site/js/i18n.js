@@ -309,9 +309,9 @@
     "en": "FinOps on AWS and hands-on exposure to Power BI and Databricks in LLM and MLOps initiatives.",
     "es": "FinOps en AWS y contacto con Power BI y Databricks en iniciativas de LLM y MLOps."
   },
-  "nov 2021 – mai 2025": {
-    "en": "Nov 2021 – May 2025",
-    "es": "nov 2021 – may 2025"
+  "nov 2022 – mai 2025": {
+    "en": "Nov 2022 – May 2025",
+    "es": "nov 2022 – may 2025"
   },
   "Migração de workloads de ECS/EC2 para Amazon EKS, padronizando deploy com Helm e ArgoCD e autoscaling com Karpenter e Cast AI.": {
     "en": "Migrated workloads from ECS/EC2 to Amazon EKS, standardizing deployments with Helm and ArgoCD and autoscaling with Karpenter and Cast AI.",
@@ -337,8 +337,8 @@
     "en": "Supported squads with Canary and Rolling Update deployments.",
     "es": "Soporte a los squads con despliegues Canary y Rolling Update."
   },
-  "abr 2020 – nov 2021": {
-    "en": "Apr 2020 – Nov 2021"
+  "abr 2021 – nov 2022": {
+    "en": "Apr 2021 – Nov 2022"
   },
   "Analista DevOps <span>· META</span>": {
     "en": "DevOps Analyst <span>· META</span>"
@@ -668,10 +668,59 @@
   "Anderson Dantas de Oliveira, Senior SRE e Engenheiro Sênior de DevOps/Platform. Plataformas confiáveis em escala com Kubernetes, Cloud, GitOps, observabilidade e IA aplicada.": {
     "en": "Anderson Dantas de Oliveira, Senior SRE and Senior DevOps/Platform Engineer. Reliable platforms at scale with Kubernetes, Cloud, GitOps, observability and applied AI.",
     "es": "Anderson Dantas de Oliveira, Senior SRE e Ingeniero Sénior de DevOps/Platform. Plataformas confiables a escala con Kubernetes, Cloud, GitOps, observabilidad e IA aplicada."
+  },
+  "Rastreabilidade de ponta a ponta: você sabe o que aconteceu, porque aconteceu e o que já está sendo feito.": {
+    "en": "End-to-end traceability: you know what happened, why it happened and what is already being done.",
+    "es": "Trazabilidad de punta a punta: sabes qué pasó, por qué pasó y qué se está haciendo al respecto."
+  },
+  "Plataformas confiáveis em escala: Kubernetes, Cloud, GitOps, SRE e IA aplicada à operação.": {
+    "en": "Reliable platforms at scale: Kubernetes, Cloud, GitOps, SRE and AI applied to operations.",
+    "es": "Plataformas confiables a escala: Kubernetes, Cloud, GitOps, SRE e IA aplicada a la operación."
+  },
+  "Página não encontrada · Anderson Oliveira": {
+    "en": "Page not found · Anderson Oliveira",
+    "es": "Página no encontrada · Anderson Oliveira"
+  },
+  "Erro 404": {
+    "en": "Error 404",
+    "es": "Error 404"
+  },
+  "Esta página <em>não</em> existe.": {
+    "en": "This page <em>doesn't</em> exist.",
+    "es": "Esta página <em>no</em> existe."
+  },
+  "Mas a plataforma continua de pé. Volte para o início e conheça meu trabalho.": {
+    "en": "But the platform is still up. Head back to the home page and see my work.",
+    "es": "Pero la plataforma sigue en pie. Vuelve al inicio y conoce mi trabajo."
+  },
+  "Voltar ao início": {
+    "en": "Back to home",
+    "es": "Volver al inicio"
   }
 };
 
   const norm = s => s.replace(/\s+/g, " ").trim();
+
+  // Tolera pequenas edições no texto em português (ex.: "por que" → "porque"):
+  // se não houver chave exata, usa a frase do dicionário mais parecida (>= 80% das palavras).
+  const words = s => s.toLowerCase().replace(/<[^>]+>/g, " ").match(/[\p{L}\p{N}]+/gu) || [];
+  const KEYS = Object.keys(DICT).map(k => ({ k, w: new Set(words(k)) })).filter(x => x.w.size >= 6);
+  function findKey(key) {
+    if (DICT[key]) return key;
+    const w = new Set(words(key));
+    if (w.size < 6) return null;
+    let best = null, score = 0;
+    KEYS.forEach(x => {
+      let inter = 0; w.forEach(t => { if (x.w.has(t)) inter++; });
+      const j = inter / (w.size + x.w.size - inter);
+      if (j > score) { score = j; best = x.k; }
+    });
+    if (score >= 0.8) {
+      console.warn("[i18n] texto alterado; usando a tradução mais próxima. Atualize a chave em js/i18n.js:", key);
+      return best;
+    }
+    return null;
+  }
   const SKIP = new Set(["SCRIPT", "STYLE", "SVG", "PRE", "TEMPLATE"]);
   const DYNAMIC = "#skills, #certs, #migTabs, #migPanel, #evoTrack, #evoPanel, #termBody, .lang";
 
@@ -681,8 +730,8 @@
     if (SKIP.has(el.tagName) || el.matches(DYNAMIC)) return;
     const direct = [...el.childNodes].some(n => n.nodeType === 3 && /[A-Za-zÀ-ÿ]/.test(n.textContent));
     if (direct) {
-      const key = norm(el.innerHTML);
-      if (DICT[key]) nodes.push({ el, key, orig: el.innerHTML });
+      const key = findKey(norm(el.innerHTML));
+      if (key) nodes.push({ el, key, orig: el.innerHTML });
       return;
     }
     [...el.children].forEach(walk);
@@ -690,7 +739,8 @@
 
   const attrs = [];
   document.querySelectorAll("[aria-label],[alt],[title]").forEach(el => {
-    if (el.closest(DYNAMIC) && !el.matches(".lang")) return;
+    // ignora elementos DENTRO de áreas renderizadas pelo main.js (os containers em si são traduzidos)
+    if (el.parentElement && el.parentElement.closest(DYNAMIC)) return;
     ["aria-label", "alt", "title"].forEach(a => {
       const v = el.getAttribute(a);
       if (v && DICT[v]) attrs.push({ el, a, key: v });
@@ -700,6 +750,9 @@
   const metaDesc = document.querySelector('meta[name="description"]');
   const descKey = metaDesc ? metaDesc.content : "";
   const ogLocale = document.querySelector('meta[property="og:locale"]');
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  const ogDescKey = ogDesc ? ogDesc.content : "";
+  const titleKey = document.title;
 
   // 2) Idioma inicial
   const fromUrl = new URLSearchParams(location.search).get("lang");
@@ -716,6 +769,8 @@
     nodes.forEach(n => { n.el.innerHTML = lang === "pt" ? n.orig : tr(n.key); });
     attrs.forEach(a => a.el.setAttribute(a.a, tr(a.key)));
     if (metaDesc) metaDesc.content = tr(descKey);
+    if (ogDesc) ogDesc.content = tr(ogDescKey);
+    document.title = tr(titleKey);
     if (ogLocale) ogLocale.content = OG_LOCALE[lang];
     document.documentElement.lang = HTML_LANG[lang];
     document.querySelectorAll(".lang [data-lang]").forEach(b => {
