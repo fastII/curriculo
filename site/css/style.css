@@ -137,7 +137,7 @@ code { font-family: var(--mono); font-size: .88em; background: var(--brand-soft)
 .nav__burger { display: none; flex-direction: column; gap: 4px; }
 .nav__burger span { display: block; width: 16px; height: 1.5px; background: currentColor; }
 
-@media (max-width: 960px) {
+@media (max-width: 1120px) {
   .nav__links {
     position: absolute; top: 68px; left: 0; right: 0;
     flex-direction: column; gap: 0; padding: .5rem 16px 1rem;
@@ -150,7 +150,7 @@ code { font-family: var(--mono); font-size: .88em; background: var(--brand-soft)
   .nav__actions .btn { display: none; }
   .nav__brand span:last-child { display: none; }
 }
-@media (min-width: 961px) and (max-width: 1100px) { .nav__brand span:last-child { display: none; } }
+@media (min-width: 1121px) and (max-width: 1180px) { .nav__brand span:last-child { display: none; } }
 
 /* ============ Hero ============ */
 .hero { padding: clamp(3rem, 8vw, 6.5rem) 0 clamp(3rem, 7vw, 5rem); position: relative; overflow: hidden; }
@@ -458,8 +458,8 @@ code { font-family: var(--mono); font-size: .88em; background: var(--brand-soft)
 
 /* Nav com 7 itens: evita quebra de linha */
 .nav__links a, .nav__brand, .nav__actions .btn { white-space: nowrap; }
-@media (min-width: 961px) { .nav__links { gap: 1.25rem; } }
-@media (min-width: 961px) and (max-width: 1240px) {
+@media (min-width: 1121px) { .nav__links { gap: 1.25rem; } }
+@media (min-width: 1121px) and (max-width: 1240px) {
   .nav__brand span:last-child { display: none; }
   .nav__links { gap: 1rem; }
   .nav__links a { font-size: .86rem; }
@@ -481,3 +481,19 @@ code { font-family: var(--mono); font-size: .88em; background: var(--brand-soft)
 .hero .hero__cta { margin-top: 1.8rem; }
 .hero h1 { font-size: clamp(2.4rem, 5vw, 3.9rem); }
 .hero { padding-top: clamp(2.5rem, 6vw, 4.5rem); }
+
+/* ============ Seletor de idioma ============ */
+.lang {
+  display: inline-flex; padding: 3px; gap: 2px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+.lang button {
+  font: 600 .72rem var(--mono); letter-spacing: .04em;
+  border: 0; background: transparent; color: var(--muted);
+  padding: .38em .62em; border-radius: 999px; cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.lang button:hover { color: var(--text); }
+.lang button[aria-pressed="true"] { background: var(--brand); color: #fff; }
+.lang button:focus-visible { outline: 2px solid var(--brand); outline-offset: 1px; }
+@media (max-width: 380px) { .lang button { padding: .35em .5em; } }
