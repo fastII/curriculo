@@ -7,7 +7,7 @@
       "Threshold": 80,
       "ThresholdType": "PERCENTAGE"
     },
-    "Subscribers": [{ "SubscriptionType": "EMAIL", "Address": "dudachris985@gmail.com" }]
+    "Subscribers": [{ "SubscriptionType": "EMAIL", "Address": "" }]
   },
   {
     "Notification": {
@@ -16,6 +16,6 @@
       "Threshold": 100,
       "ThresholdType": "PERCENTAGE"
     },
-    "Subscribers": [{ "SubscriptionType": "EMAIL", "Address": "dudachris985@gmail.com" }]
+    "Subscribers": [{ "SubscriptionType": "EMAIL", "Address": "" }]
   }
 ]
