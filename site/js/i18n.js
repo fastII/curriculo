@@ -89,7 +89,7 @@
     "es": "Contactar"
   },
   "Currículo (PDF)": {
-    "en": "Résumé (PDF, Portuguese)",
+    "en": "Resume (PDF, Portuguese)",
     "es": "Currículum (PDF, en portugués)"
   },
   "anos em infraestrutura": {
@@ -617,7 +617,7 @@
     "es": "Escribir por WhatsApp"
   },
   "Abrir currículo (PDF)": {
-    "en": "Open résumé (PDF, Portuguese)",
+    "en": "Open resume (PDF, Portuguese)",
     "es": "Abrir currículum (PDF, en portugués)"
   },
   "Anderson Dantas de Oliveira · Senior SRE &amp; Platform Engineer · Brasília, Brasil": {
